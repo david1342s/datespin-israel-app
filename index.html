@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DateSpin Israel | מצאו את הטיול המושלם שלכם</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts for premium typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for small icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+    <header class="app-header">
+        <div class="theme-toggle">
+            <button id="themeToggleBtn" aria-label="החלף מצב תצוגה (בהיר/כהה)">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <div class="hero">
+            <h1>DateSpin <span>Israel</span></h1>
+            <p>המדריך האישי שלכם לטיולי זוגות רומנטיים וספונטניים בישראל. <br> ענו על כמה שאלות קצרות וגלו את המסלול המושלם עבורכם להיום.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Filter Form Section -->
+        <section id="filterSection" class="section filter-section">
+            <div class="section-header">
+                <h2>מה מתאים לכם היום?</h2>
+            </div>
+            <form id="filterForm" class="filter-form">
+                
+                <!-- אזור טיול -->
+                <div class="filter-group">
+                    <label>אזור טיול:</label>
+                    <div class="chips-container" id="regionFilter">
+                        <label class="chip"><input type="radio" name="region" value="צפון"> צפון</label>
+                        <label class="chip"><input type="radio" name="region" value="מרכז"> מרכז</label>
+                        <label class="chip"><input type="radio" name="region" value="ירושלים והסביבה"> ירושלים והסביבה</label>
+                        <label class="chip"><input type="radio" name="region" value="דרום"> דרום</label>
+                    </div>
+                </div>
+
+                <!-- סוג מסלול -->
+                <div class="filter-group">
+                    <label>סוג מסלול:</label>
+                    <div class="chips-container" id="routeTypeFilter">
+                        <label class="chip"><input type="radio" name="routeType" value="מעגלי"> מעגלי</label>
+                        <label class="chip"><input type="radio" name="routeType" value="קצר"> קצר</label>
+                        <label class="chip"><input type="radio" name="routeType" value="ארוך"> ארוך</label>
+                    </div>
+                </div>
+
+                <!-- האם לשלב אוכל -->
+                <div class="filter-group">
+                    <label>לשלב עצירת אוכל / יין?</label>
+                    <div class="chips-container" id="foodFilter">
+                        <label class="chip"><input type="radio" name="food" value="כן"> כן, ברור!</label>
+                        <label class="chip"><input type="radio" name="food" value="לא"> לא חובה</label>
+                    </div>
+                </div>
+
+                <!-- רמת קושי -->
+                <div class="filter-group">
+                    <label>רמת קושי:</label>
+                    <div class="chips-container" id="difficultyFilter">
+                        <label class="chip"><input type="radio" name="difficulty" value="קל"> קל (טיול נינוח)</label>
+                        <label class="chip"><input type="radio" name="difficulty" value="בינוני"> בינוני</label>
+                        <label class="chip"><input type="radio" name="difficulty" value="מאתגר"> מאתגר</label>
+                    </div>
+                </div>
+
+                <!-- סגנון בילוי -->
+                <div class="filter-group">
+                    <label>סגנון בילוי עיקרי:</label>
+                    <div class="chips-container" id="styleFilter">
+                        <label class="chip"><input type="radio" name="style" value="רומנטי"> רומנטי</label>
+                        <label class="chip"><input type="radio" name="style" value="טבע"> טבע</label>
+                        <label class="chip"><input type="radio" name="style" value="נוף"> נוף פתוח</label>
+                        <label class="chip"><input type="radio" name="style" value="מים"> מים / מעיינות</label>
+                        <label class="chip"><input type="radio" name="style" value="קולינרי"> קולינרי</label>
+                        <label class="chip"><input type="radio" name="style" value="שקיעה"> שקיעה</label>
+                    </div>
+                </div>
+
+                <!-- זמן זמין -->
+                <div class="filter-group">
+                    <label>כמה זמן יש לכם?</label>
+                    <div class="chips-container" id="durationFilter">
+                        <label class="chip"><input type="radio" name="duration" value="2-3 שעות"> 2–3 שעות</label>
+                        <label class="chip"><input type="radio" name="duration" value="חצי יום"> חצי יום</label>
+                        <label class="chip"><input type="radio" name="duration" value="יום מלא"> יום מלא</label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="readyBtn" class="btn primary-btn" disabled>המשך לחיפוש</button>
+                    <p id="formError" class="error-msg hidden">אנא בחרו אפשרות אחת בכל קטגוריה כדי להמשיך.</p>
+                </div>
+            </form>
+        </section>
+
+        <!-- Roulette Section -->
+        <section id="rouletteSection" class="section roulette-section hidden">
+            <div class="section-header">
+                <h2>סובבו כדי לגלות את הטיול שלכם</h2>
+                <p>הכנו עבורכם התאמה אישית לפי ההעדפות שבחרתם.</p>
+            </div>
+            
+            <div class="roulette-container">
+                <div class="wheel-box">
+                    <div class="wheel-label">אזור</div>
+                    <div class="wheel" id="wheelRegion">
+                        <div class="slots-container"></div>
+                    </div>
+                </div>
+                <div class="wheel-box">
+                    <div class="wheel-label">סגנון טיול</div>
+                    <div class="wheel" id="wheelStyle">
+                        <div class="slots-container"></div>
+                    </div>
+                </div>
+                <div class="wheel-box">
+                    <div class="wheel-label">סוג מסלול</div>
+                    <div class="wheel" id="wheelType">
+                        <div class="slots-container"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="roulette-actions">
+                <button id="spinBtn" class="btn spin-btn"><i class="fas fa-sync-alt"></i> סובבו עכשיו!</button>
+            </div>
+        </section>
+
+        <!-- Result Section -->
+        <section id="resultSection" class="section result-section hidden">
+            <div class="result-card">
+                <div class="result-header">
+                    <h2 id="resName">שם המסלול יופיע כאן</h2>
+                    <p id="resShortDesc" class="subtitle">תיאור קצר ומזמין יופיע כאן</p>
+                </div>
+                
+                <div class="result-why">
+                    <h3><i class="fas fa-heart"></i> למה זה מתאים לכם היום?</h3>
+                    <p id="resWhyFit"></p>
+                </div>
+
+                <div class="result-grid">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span><strong>אזור:</strong> <span id="resRegion"></span></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-route"></i>
+                        <span><strong>אורך:</strong> <span id="resLength"></span></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="far fa-clock"></i>
+                        <span><strong>זמן משוער:</strong> <span id="resDuration"></span></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-hiking"></i>
+                        <span><strong>רמת קושי:</strong> <span id="resDifficulty"></span></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-undo"></i>
+                        <span><strong>סוג מסלול:</strong> <span id="resRouteType"></span></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-car"></i>
+                        <span><strong>נסיעה:</strong> <span id="resDriveDist"></span></span>
+                    </div>
+                </div>
+
+                <div class="result-details">
+                    <div class="detail-block">
+                        <h4><i class="fas fa-mountain"></i> מאמץ ותוואי שטח</h4>
+                        <p id="resElevation"></p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fas fa-flag-checkered"></i> נקודות מפתח</h4>
+                        <p><strong>התחלה:</strong> <span id="resStart"></span> | <strong>סיום:</strong> <span id="resEnd"></span></p>
+                        <ul id="resHighlights" class="highlights-list"></ul>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fas fa-utensils"></i> המלצות אוכל באזור</h4>
+                        <p id="resFood"></p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fas fa-backpack"></i> מה להביא והתאמה לעונה</h4>
+                        <p id="resBringSeason"></p>
+                    </div>
+                </div>
+
+                <div class="result-actions">
+                    <a id="resMapsLink" href="#" target="_blank" class="btn maps-btn"><i class="fas fa-map-marked-alt"></i> פתחו בניווט (Google Maps)</a>
+                    <a id="resInfoLink" href="#" target="_blank" class="btn info-btn"><i class="fas fa-info-circle"></i> מידע נוסף על המסלול</a>
+                </div>
+            </div>
+
+            <div class="secondary-actions">
+                <button id="spinAgainBtn" class="btn secondary-btn"><i class="fas fa-redo"></i> סובבו שוב</button>
+                <button id="editFiltersBtn" class="btn secondary-btn"><i class="fas fa-sliders-h"></i> שנו העדפות</button>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h3>איך זה עובד?</h3>
+            <p>אנחנו אוספים את המסלולים הכי שווים בארץ לזוגות, מסננים לפי ההעדפות שלכם לאותו היום, ונותנים לרולטה להחליט איזו הרפתקה מחכה לכם. בלי לשבור את הראש, פשוט לצאת לטייל.</p>
+        </section>
+    </main>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
