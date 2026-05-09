@@ -272,8 +272,8 @@ document.addEventListener("DOMContentLoaded", () => {
         resFood.textContent = matchedTrip.foodRecommendations;
         resBringSeason.textContent = `${matchedTrip.whatToBring} | עונות מומלצות: ${matchedTrip.seasonSuitability}`;
         
-        resMapsLink.href = matchedTrip.mapsLink;
-        resInfoLink.href = matchedTrip.infoLink;
+        resMapsLink.onclick = () => window.open(matchedTrip.mapsLink, '_blank');
+        resInfoLink.onclick = () => window.open(matchedTrip.infoLink, '_blank');
     }
 
     // --- Navigation Actions ---
